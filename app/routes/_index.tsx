@@ -68,30 +68,13 @@ export default function Homepage() {
   return (
     <div className="home">
       <img
-        src="/images/site-banner-min.jpg"
+        src="/images/site-banner-2-min.jpg"
         alt="Bad Omen Prints hero banner"
         className="hero-image"
-        style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '2rem' }}
+        style={{ width: '100%', objectFit: 'cover', display: 'block', marginBottom: '2rem' }}
       />
-      <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} />
     </div>
-  );
-}
-
-function FeaturedCollection({
-  collection,
-}: {
-  collection: FeaturedCollectionFragment;
-}) {
-  if (!collection) return null;
-  return (
-    <Link
-      className="featured-collection"
-      to={`/collections/${collection.handle}`}
-    >
-      <h1>{collection.title}</h1>
-    </Link>
   );
 }
 
