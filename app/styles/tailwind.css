@@ -4,3 +4,22 @@
  */
 
 @import 'tailwindcss';
+
+/* Custom font families */
+@theme {
+  --font-family-audiowide: 'Audiowide', cursive;
+  --font-family-exo2: 'Exo 2', sans-serif;
+}
+
+@utilities {
+  .font-audiowide {
+    font-family: var(--font-family-audiowide);
+  }
+  .font-exo2 {
+    font-family: var(--font-family-exo2);
+  }
+}
+
+.font-audiowide {
+  font-family: 'Audiowide', cursive !important;
+}

@@ -27,7 +27,7 @@ export function Header({
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
+        <strong className="font-audiowide">{shop.name}</strong>
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -63,6 +63,7 @@ export function HeaderMenu({
           prefetch="intent"
           style={activeLinkStyle}
           to="/"
+          className="font-audiowide"
         >
           Home
         </NavLink>
@@ -79,7 +80,7 @@ export function HeaderMenu({
             : item.url;
         return (
           <NavLink
-            className="header-menu-item"
+            className="header-menu-item font-audiowide"
             end
             key={item.id}
             onClick={close}
@@ -122,7 +123,7 @@ function HeaderMenuMobileToggle() {
       className="header-menu-mobile-toggle reset"
       onClick={() => open('mobile')}
     >
-      <h3>☰</h3>
+      <h3 className="font-audiowide">☰</h3>
     </button>
   );
 }
