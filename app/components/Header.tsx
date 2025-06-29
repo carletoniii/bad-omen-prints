@@ -68,7 +68,7 @@ export function HeaderMenu({
             : item.url;
         return (
           <NavLink
-            className="header-menu-item font-audiowide lowercase"
+            className="header-menu-item font-exo2 lowercase"
             end
             key={item.id}
             onClick={close}
@@ -91,7 +91,7 @@ function HeaderCtas({
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle} className="font-audiowide">
+      <NavLink prefetch="intent" to="/account" style={activeLinkStyle} className="font-exo2">
         <Suspense fallback="Sign in">
           <Await resolve={isLoggedIn} errorElement="Sign in">
             {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
@@ -131,7 +131,7 @@ function CartBadge({count}: {count: number | null}) {
   return (
     <a
       href="/cart"
-      className="font-audiowide"
+      className="font-exo2"
       onClick={(e) => {
         e.preventDefault();
         open('cart');
