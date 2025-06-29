@@ -9,8 +9,8 @@ export default function DeliveryReturns() {
   return (
     <div className="delivery-returns-page" style={{ maxWidth: 900, margin: '1rem auto', padding: '0.5rem' }}>
       <div className="delivery-returns-columns">
-        <h1>Delivery & Returns</h1>
-        <h2>Made to Order</h2>
+        <h1 className="lowercase">Delivery & Returns</h1>
+        <h2 className="lowercase">Made to Order</h2>
         <p>All prints are made just for you. Once you place an order, it goes straight into production.</p>
         <p><strong>Please allow:</strong></p>
         <ul>
@@ -18,7 +18,7 @@ export default function DeliveryReturns() {
           <li>5–8 business days for shipping within the U.S.</li>
         </ul>
         <p>You&#39;ll receive a tracking link by email as soon as your order ships.</p>
-        <h2>Shipping</h2>
+        <h2 className="lowercase">Shipping</h2>
         <p>We currently ship only within the United States.</p>
         <p><strong>Shipping is calculated at checkout based on print size:</strong></p>
         <ul>
@@ -26,7 +26,7 @@ export default function DeliveryReturns() {
           <li>Large print (20×30): $7.99 flat rate</li>
         </ul>
         <p>Orders ship from a U.S.-based fulfillment center.</p>
-        <h2>Returns & Replacements</h2>
+        <h2 className="lowercase">Returns & Replacements</h2>
         <p>Because each print is made to order, we don&#39;t accept returns or exchanges for preferences like size or color.</p>
         <p>If your order arrives damaged, misprinted, or defective, we&#39;ll work with our print partner to make it right:</p>
         <ul>
@@ -35,7 +35,7 @@ export default function DeliveryReturns() {
           <li>If the problem is confirmed, we&#39;ll send a free replacement or issue a refund—at no cost to you</li>
         </ul>
         <p>Returned packages are processed through our fulfillment partner. If a shipment is returned due to an incorrect or undeliverable address, you&#39;ll be responsible for the cost of reshipping once a corrected address is provided.</p>
-        <h2>Questions</h2>
+        <h2 className="lowercase">Questions</h2>
         <p>If you have any concerns, feel free to reach out. We&#39;re a small operation, but we care a lot.</p>
       </div>
       <style>{`
