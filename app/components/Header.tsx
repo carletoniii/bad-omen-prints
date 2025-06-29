@@ -27,7 +27,7 @@ export function Header({
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong className="font-audiowide">{shop.name}</strong>
+        <strong className="font-audiowide lowercase">{shop.name}</strong>
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -56,18 +56,6 @@ export function HeaderMenu({
 
   return (
     <nav className={className} role="navigation">
-      {viewport === 'mobile' && (
-        <NavLink
-          end
-          onClick={close}
-          prefetch="intent"
-          style={activeLinkStyle}
-          to="/"
-          className="font-audiowide"
-        >
-          Home
-        </NavLink>
-      )}
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
 
@@ -80,7 +68,7 @@ export function HeaderMenu({
             : item.url;
         return (
           <NavLink
-            className="header-menu-item font-audiowide"
+            className="header-menu-item font-audiowide lowercase"
             end
             key={item.id}
             onClick={close}
