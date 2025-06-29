@@ -14,7 +14,7 @@ export const meta: MetaFunction = () => {
     { name: 'description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
     { property: 'og:title', content: 'Bad Omen Prints | Film Photography Prints' },
     { property: 'og:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
-    { property: 'og:image', content: '/images/Orchid-on-Blue-min.jpg' },
+    { property: 'og:image', content: '/images/SEO-image-min.jpg' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ];
 };
@@ -67,6 +67,12 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
     <div className="home">
+      <img
+        src="/images/site-banner-min.jpg"
+        alt="Bad Omen Prints hero banner"
+        className="hero-image"
+        style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '2rem' }}
+      />
       <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} />
     </div>
@@ -79,17 +85,11 @@ function FeaturedCollection({
   collection: FeaturedCollectionFragment;
 }) {
   if (!collection) return null;
-  const image = collection?.image;
   return (
     <Link
       className="featured-collection"
       to={`/collections/${collection.handle}`}
     >
-      {image && (
-        <div className="featured-collection-image">
-          <Image data={image} sizes="100vw" />
-        </div>
-      )}
       <h1>{collection.title}</h1>
     </Link>
   );
