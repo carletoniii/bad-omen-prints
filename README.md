@@ -1,45 +1,25 @@
-# Hydrogen template: Skeleton
+# Bad Omen Prints
 
-Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dovetail with [Remix](https://remix.run/), Shopify’s full stack web framework. This template contains a **minimal setup** of components, queries and tooling to get started with Hydrogen.
+**Bad Omen Prints** is a custom Shopify Hydrogen storefront for selling original film photography prints. Built with modern web technologies, this project serves as both a functional e-commerce store and a portfolio piece showcasing full-stack development skills.
 
-[Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
-[Get familiar with Remix](https://remix.run/docs/en/v1)
+---
 
-## What's included
+## 🛠 Tech Stack
 
-- Remix
-- Hydrogen
-- Oxygen
+- [Shopify Hydrogen](https://hydrogen.shopify.dev/) (v2)
+- TypeScript
+- Tailwind CSS
 - Vite
-- Shopify CLI
-- ESLint
-- Prettier
-- GraphQL generator
-- TypeScript and JavaScript flavors
-- Minimal setup of components and routes
+- Shopify Storefront API
 
-## Getting started
+---
 
-**Requirements:**
+## 🎯 Purpose
 
-- Node.js version 18.0.0 or higher
+- Sell original medium format and 35mm film prints (print-on-demand)
+- Showcase web development, styling, and Shopify integration skills
+- Create a clean, modern, performant storefront experience
 
-```bash
-npm create @shopify/hydrogen@latest
-```
+---
 
-## Building for production
-
-```bash
-npm run build
-```
-
-## Local development
-
-```bash
-npm run dev
-```
-
-## Setup for using Customer Account API (`/account` section)
-
-Follow step 1 and 2 of <https://shopify.dev/docs/custom-storefronts/building-with-the-customer-account-api/hydrogen#step-1-set-up-a-public-domain-for-local-development>
+## 📁 Project Structure
