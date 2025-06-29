@@ -36,7 +36,7 @@ export default function DeliveryReturns() {
         </ul>
         <p>Returned packages are processed through our fulfillment partner. If a shipment is returned due to an incorrect or undeliverable address, you&#39;ll be responsible for the cost of reshipping once a corrected address is provided.</p>
         <h2 className="lowercase">Questions</h2>
-        <p>If you have any concerns, feel free to reach out. We&#39;re a small operation, but we care a lot.</p>
+        <p>If you have any concerns, feel free to reach out at <a href="mailto:carletonfosteriii@gmail.com">carletonfosteriii@gmail.com</a>. We&#39;re a small operation, but we care a lot.</p>
       </div>
       <style>{`
         .delivery-returns-columns h1, .delivery-returns-columns h2 {
