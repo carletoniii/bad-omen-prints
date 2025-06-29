@@ -9,7 +9,14 @@ import type {
 import {ProductItem} from '~/components/ProductItem';
 
 export const meta: MetaFunction = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [
+    { title: 'Bad Omen Prints | Film Photography Prints' },
+    { name: 'description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
+    { property: 'og:title', content: 'Bad Omen Prints | Film Photography Prints' },
+    { property: 'og:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
+    { property: 'og:image', content: '/images/Orchid-on-Blue-min.jpg' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
