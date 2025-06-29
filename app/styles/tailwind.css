@@ -1,25 +1,26 @@
 /**
- * Configure Tailwind v4 in this file using CSS variables and directives:
+ * Tailwind v4-compatible font configuration using CSS variables and layers
  * https://tailwindcss.com/docs/v4-beta#css-first-configuration
  */
 
-@import 'tailwindcss';
+ @import 'tailwindcss';
 
-/* Custom font families */
-@theme {
-  --font-family-audiowide: 'Audiowide', cursive;
-  --font-family-exo2: 'Exo 2', sans-serif;
-}
-
-@utilities {
-  .font-audiowide {
-    font-family: var(--font-family-audiowide);
-  }
-  .font-exo2 {
-    font-family: var(--font-family-exo2);
-  }
-}
-
-.font-audiowide {
-  font-family: 'Audiowide', cursive !important;
-}
+ /* Define custom font variables on the root element */
+ @layer base {
+   :root {
+     --font-family-audiowide: 'Audiowide', cursive;
+     --font-family-exo2: 'Exo 2', sans-serif;
+   }
+ }
+ 
+ /* Create utility classes for custom fonts */
+ @layer utilities {
+   .font-audiowide {
+     font-family: var(--font-family-audiowide);
+   }
+ 
+   .font-exo2 {
+     font-family: var(--font-family-exo2);
+   }
+ }
+ 
