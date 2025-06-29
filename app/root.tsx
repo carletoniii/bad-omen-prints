@@ -17,6 +17,7 @@ import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
 import {PageLayout} from './components/PageLayout';
+import {CookieConsentBanner} from './components/CookieConsentBanner';
 
 export type RootLoader = typeof loader;
 
@@ -172,6 +173,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         ) : (
           children
         )}
+        <CookieConsentBanner />
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
