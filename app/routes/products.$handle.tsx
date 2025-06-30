@@ -104,8 +104,8 @@ export default function Product() {
   return (
     <div className="product">
       <ProductImage image={selectedVariant?.image} />
-      <div className="product-main">
-        <h1>{title}</h1>
+      <div className="product-main font-exo2">
+        <h1 className="font-audiowide lowercase">{title}</h1>
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
@@ -117,7 +117,7 @@ export default function Product() {
         />
         <br />
         <br />
-        <p>
+        <p className="font-audiowide lowercase">
           <strong>Description</strong>
         </p>
         <br />

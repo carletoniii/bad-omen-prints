@@ -7,6 +7,7 @@ import type {
 import {AddToCartButton} from './AddToCartButton';
 import {useAside} from './Aside';
 import type {ProductFragment} from 'storefrontapi.generated';
+import {useState} from 'react';
 
 export function ProductForm({
   productOptions,
@@ -17,6 +18,8 @@ export function ProductForm({
 }) {
   const navigate = useNavigate();
   const {open} = useAside();
+  // Track hover state for each option value by key
+  const [hovered, setHovered] = useState<string | null>(null);
   return (
     <div className="product-form">
       {productOptions.map((option) => {
@@ -38,7 +41,7 @@ export function ProductForm({
                   isDifferentProduct,
                   swatch,
                 } = value;
-
+                const key = option.name + name;
                 if (isDifferentProduct) {
                   // SEO
                   // When the variant is a combined listing child product
@@ -47,17 +50,32 @@ export function ProductForm({
                   return (
                     <Link
                       className="product-options-item"
-                      key={option.name + name}
+                      key={key}
                       prefetch="intent"
                       preventScrollReset
                       replace
                       to={`/products/${handle}?${variantUriQuery}`}
                       style={{
-                        border: selected
-                          ? '1px solid black'
-                          : '1px solid transparent',
+                        border: '2px solid ' + (selected ? '#111' : hovered === key && available ? '#111' : '#888'),
+                        background: selected
+                          ? '#111'
+                          : hovered === key && available
+                          ? '#f3f3f3'
+                          : '#fff',
+                        color: selected ? '#fff' : '#111',
                         opacity: available ? 1 : 0.3,
+                        borderRadius: '6px',
+                        padding: '0.4rem 1.1rem',
+                        fontFamily: 'Exo 2, sans-serif',
+                        fontWeight: 'bold',
+                        fontSize: '1rem',
+                        cursor: available ? 'pointer' : 'not-allowed',
+                        marginRight: '0.5rem',
+                        marginBottom: '0.5rem',
+                        transition: 'all 0.15s',
                       }}
+                      onMouseEnter={() => setHovered(key)}
+                      onMouseLeave={() => setHovered(null)}
                     >
                       <ProductOptionSwatch swatch={swatch} name={name} />
                     </Link>
@@ -74,14 +92,38 @@ export function ProductForm({
                       className={`product-options-item${
                         exists && !selected ? ' link' : ''
                       }`}
-                      key={option.name + name}
+                      key={key}
                       style={{
-                        border: selected
-                          ? '1px solid black'
-                          : '1px solid transparent',
+                        border: '2px solid ' + (selected
+                          ? '#111'
+                          : hovered === key && available
+                          ? '#777'
+                          : '#888'),
+                        background: selected
+                          ? '#111'
+                          : hovered === key && available
+                          ? '#777'
+                          : '#fff',
+                        color: selected
+                          ? '#fff'
+                          : hovered === key && available
+                          ? '#fff'
+                          : '#111',
                         opacity: available ? 1 : 0.3,
+                        borderRadius: '6px',
+                        padding: '0.4rem 1.1rem',
+                        fontFamily: 'Exo 2, sans-serif',
+                        fontWeight: 'bold',
+                        fontSize: '1rem',
+                        cursor: available ? 'pointer' : 'not-allowed',
+                        marginRight: '0.5rem',
+                        marginBottom: '0.5rem',
+                        transition: 'all 0.15s',
+                        textDecoration: 'none',
                       }}
                       disabled={!exists}
+                      onMouseEnter={() => setHovered(key)}
+                      onMouseLeave={() => setHovered(null)}
                       onClick={() => {
                         if (!selected) {
                           navigate(`?${variantUriQuery}`, {
