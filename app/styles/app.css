@@ -642,26 +642,13 @@ button.reset:hover:not(:has(> *)) {
   }
   form[action*='list-manage'] > div {
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 0;
     height: auto;
-    align-items: stretch;
-    background: none;
-    border-radius: 0;
-    box-shadow: none;
+    gap: 0.5rem;
   }
   form[action*='list-manage'] input,
   form[action*='list-manage'] button {
+    width: 100%;
     height: 44px;
-    font-size: 1rem;
-    line-height: 1.2;
-  }
-  form[action*='list-manage'] input {
-    width: 100%;
-  }
-  form[action*='list-manage'] button {
-    width: 100%;
-    min-width: 0;
   }
 }
 
