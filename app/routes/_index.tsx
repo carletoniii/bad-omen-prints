@@ -169,7 +169,7 @@ export default function Homepage() {
               borderRadius: '0 0.5rem 0.5rem 0',
               cursor: 'pointer',
               transition: 'background 0.2s, transform 0.1s',
-              height: '48px',
+              height: '100%',
               display: 'flex',
               alignItems: 'center',
             }}
