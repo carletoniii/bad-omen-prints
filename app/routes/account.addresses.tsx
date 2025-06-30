@@ -21,7 +21,11 @@ import {
   DELETE_ADDRESS_MUTATION,
   CREATE_ADDRESS_MUTATION,
 } from '~/graphql/customer-account/CustomerAddressMutations';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import countriesDataRaw from '~/lib/countries.json';
+
+// Add a type for countriesData
+const countriesData: Record<string, {name: string; provinces: Record<string, string>}> = countriesDataRaw as any;
 
 export type ActionResponse = {
   addressId?: string | null;
@@ -454,6 +458,19 @@ export function AddressForm({
   const action = useActionData<ActionResponse>();
   const error = action?.error?.[addressId];
   const isDefaultAddress = defaultAddress?.id === addressId;
+
+  // --- Country/Province Dropdown Logic ---
+  const [country, setCountry] = useState(address?.territoryCode || 'US');
+  const [province, setProvince] = useState(address?.zoneCode || '');
+  const countryList = Object.entries(countriesData).map(([code, val]) => ({code, name: val.name}));
+  const provinces = countriesData[country]?.provinces || {};
+  const hasProvinces = Object.keys(provinces).length > 0;
+
+  useEffect(() => {
+    // Reset province if country changes
+    setProvince('');
+  }, [country]);
+
   return (
     <Form id={addressId} className="max-w-2xl mx-auto">
       <fieldset className="border-none p-0">
@@ -547,18 +564,35 @@ export function AddressForm({
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="zoneCode" className="font-exo2 text-sm font-semibold">State / Province<span className="text-red-500">*</span></label>
-            <input
-              aria-label="State/Province"
-              autoComplete="address-level1"
-              defaultValue={address?.zoneCode ?? ''}
-              id="zoneCode"
-              name="zoneCode"
-              placeholder="State / Province"
-              required
-              type="text"
-              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
-            />
+            {hasProvinces ? (
+              <select
+                id="zoneCode"
+                name="zoneCode"
+                value={province}
+                onChange={e => setProvince(e.target.value)}
+                required
+                className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+              >
+                <option value="" disabled>Select province/state</option>
+                {Object.entries(provinces).map(([code, name]) => (
+                  <option key={code} value={code}>{name}</option>
+                ))}
+              </select>
+            ) : (
+              <input
+                aria-label="State/Province"
+                autoComplete="address-level1"
+                defaultValue={address?.zoneCode ?? ''}
+                id="zoneCode"
+                name="zoneCode"
+                placeholder="State / Province"
+                required
+                type="text"
+                className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+              />
+            )}
           </div>
+          {/* Zip, Country */}
           <div className="flex flex-col gap-2">
             <label htmlFor="zip" className="font-exo2 text-sm font-semibold">Zip / Postal Code<span className="text-red-500">*</span></label>
             <input
@@ -573,23 +607,24 @@ export function AddressForm({
               className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
             />
           </div>
-          {/* Country, Phone */}
           <div className="flex flex-col gap-2">
             <label htmlFor="territoryCode" className="font-exo2 text-sm font-semibold">Country Code<span className="text-red-500">*</span></label>
-            <input
-              aria-label="territoryCode"
-              autoComplete="country"
-              defaultValue={address?.territoryCode ?? ''}
+            <select
               id="territoryCode"
               name="territoryCode"
-              placeholder="Country"
+              value={country}
+              onChange={e => setCountry(e.target.value)}
               required
-              type="text"
-              maxLength={2}
               className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
-            />
+            >
+              <option value="" disabled>Select country</option>
+              {countryList.map(({code, name}) => (
+                <option key={code} value={code}>{name}</option>
+              ))}
+            </select>
           </div>
-          <div className="flex flex-col gap-2">
+          {/* Phone */}
+          <div className="flex flex-col gap-2 md:col-span-2">
             <label htmlFor="phoneNumber" className="font-exo2 text-sm font-semibold">Phone</label>
             <input
               aria-label="Phone Number"
@@ -627,10 +662,35 @@ export function AddressForm({
         )}
         {/* Action buttons */}
         <div className="flex justify-end gap-3 mt-6">
-          {children({
-            stateForMethod: (method) => (formMethod === method ? state : 'idle'),
-          })}
+          {/* Save button (always shown) */}
+          <button
+            type="submit"
+            formMethod={addressId === 'NEW_ADDRESS_ID' ? 'POST' : 'PUT'}
+            className="font-audiowide bg-black text-white rounded px-6 py-2 text-base font-bold hover:bg-white hover:text-black border-2 border-black transition-colors"
+            disabled={state !== 'idle'}
+          >
+            {state !== 'idle' ? 'Saving...' : 'Save'}
+          </button>
+          {/* Delete button (only for existing addresses) */}
+          {addressId !== 'NEW_ADDRESS_ID' && (
+            <button
+              type="submit"
+              formMethod="DELETE"
+              className="font-audiowide bg-white text-black rounded px-6 py-2 text-base font-bold border-2 border-black hover:bg-red-600 hover:text-white transition-colors"
+              disabled={state !== 'idle'}
+            >
+              {state !== 'idle' ? 'Deleting...' : 'Delete'}
+            </button>
+          )}
         </div>
+        {/* Render children (action buttons, etc.) if needed */}
+        {typeof children === 'function' ? children({
+          stateForMethod: (method) => (formMethod === method ? state : 'idle'),
+        }) : null}
+        {/* Success feedback */}
+        {action?.createdAddress && (
+          <p className="mt-2 text-green-600 font-exo2 text-sm">Address saved successfully!</p>
+        )}
       </fieldset>
     </Form>
   );
