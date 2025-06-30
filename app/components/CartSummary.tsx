@@ -1,7 +1,7 @@
 import type {CartApiQueryFragment} from 'storefrontapi.generated';
 import type {CartLayout} from '~/components/CartMain';
 import {CartForm, Money, type OptimisticCart} from '@shopify/hydrogen';
-import {useRef} from 'react';
+import {useRef, useState} from 'react';
 import {FetcherWithComponents} from '@remix-run/react';
 
 type CartSummaryProps = {
@@ -15,31 +15,54 @@ export function CartSummary({cart, layout}: CartSummaryProps) {
 
   return (
     <div aria-labelledby="cart-summary" className={className}>
-      <h4>Totals</h4>
-      <dl className="cart-subtotal">
-        <dt>Subtotal</dt>
-        <dd>
+      <h4 className="font-exo2">Totals</h4>
+      <div className="font-exo2" style={{ display: 'flex', gap: '0.5em', alignItems: 'center', marginBottom: '0.5em' }}>
+        <span>Subtotal</span>
+        <span>
           {cart.cost?.subtotalAmount?.amount ? (
             <Money data={cart.cost?.subtotalAmount} />
           ) : (
             '-'
           )}
-        </dd>
-      </dl>
-      <CartDiscounts discountCodes={cart.discountCodes} />
-      <CartGiftCard giftCardCodes={cart.appliedGiftCards} />
+        </span>
+      </div>
       <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
     </div>
   );
 }
+
 function CartCheckoutActions({checkoutUrl}: {checkoutUrl?: string}) {
+  const [hover, setHover] = useState(false);
   if (!checkoutUrl) return null;
 
   return (
     <div>
-      <a href={checkoutUrl} target="_self">
-        <p>Continue to Checkout &rarr;</p>
-      </a>
+      <form action={checkoutUrl} method="get" style={{ margin: 0 }}>
+        <button
+          type="submit"
+          className="font-audiowide lowercase"
+          style={{
+            background: hover ? '#fff' : '#111',
+            color: hover ? '#111' : '#fff',
+            border: '2px solid ' + (hover ? '#111' : 'transparent'),
+            borderRadius: '4px',
+            padding: '0.5rem 1.25rem',
+            fontWeight: 'bold',
+            fontSize: '0.95rem',
+            letterSpacing: '0.05em',
+            cursor: 'pointer',
+            transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+            marginTop: '1rem',
+            marginBottom: '1rem',
+            textTransform: 'lowercase',
+            width: '100%',
+          }}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          continue to checkout
+        </button>
+      </form>
       <br />
     </div>
   );

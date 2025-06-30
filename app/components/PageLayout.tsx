@@ -57,7 +57,7 @@ export function PageLayout({
 
 function CartAside({cart}: {cart: PageLayoutProps['cart']}) {
   return (
-    <Aside type="cart" heading="CART">
+    <Aside type="cart" heading={<span className="font-audiowide">cart</span>}>
       <Suspense fallback={<p>Loading cart ...</p>}>
         <Await resolve={cart}>
           {(cart) => {
@@ -72,7 +72,7 @@ function CartAside({cart}: {cart: PageLayoutProps['cart']}) {
 function SearchAside() {
   const queriesDatalistId = useId();
   return (
-    <Aside type="search" heading="SEARCH">
+    <Aside type="search" heading={<span className="font-audiowide">search</span>}>
       <div className="predictive-search">
         <br />
         <SearchFormPredictive>
@@ -161,7 +161,7 @@ function MobileMenuAside({
   return (
     header.menu &&
     header.shop.primaryDomain?.url && (
-      <Aside type="mobile" heading="MENU">
+      <Aside type="mobile" heading={<span className="font-audiowide">menu</span>}>
         <HeaderMenu
           menu={header.menu}
           viewport="mobile"

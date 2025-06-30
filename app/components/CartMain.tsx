@@ -55,13 +55,13 @@ function CartEmpty({
   return (
     <div hidden={hidden}>
       <br />
-      <p>
+      <p className="font-exo2">
         Looks like you haven&rsquo;t added anything yet, let&rsquo;s get you
         started!
       </p>
       <br />
-      <Link to="/collections" onClick={close} prefetch="viewport">
-        Continue shopping →
+      <Link to="/collections" onClick={close} prefetch="viewport" className="font-exo2">
+        Continue shopping &rarr;
       </Link>
     </div>
   );

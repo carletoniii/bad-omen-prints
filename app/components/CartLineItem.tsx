@@ -49,14 +49,14 @@ export function CartLineItem({
           }}
         >
           <p>
-            <strong>{product.title}</strong>
+            <strong className="font-audiowide">{product.title}</strong>
           </p>
         </Link>
         <ProductPrice price={line?.cost?.totalAmount} />
         <ul>
           {selectedOptions.map((option) => (
             <li key={option.name}>
-              <small>
+              <small className="font-exo2">
                 {option.name}: {option.value}
               </small>
             </li>
@@ -80,30 +80,33 @@ function CartLineQuantity({line}: {line: CartLine}) {
   const nextQuantity = Number((quantity + 1).toFixed(0));
 
   return (
-    <div className="cart-line-quantity">
-      <small>Quantity: {quantity} &nbsp;&nbsp;</small>
-      <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
+    <div className="cart-line-quantity" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      <span className="font-exo2" style={{ fontSize: '1em' }}>Quantity:</span>
+      <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}> 
         <button
           aria-label="Decrease quantity"
           disabled={quantity <= 1 || !!isOptimistic}
           name="decrease-quantity"
           value={prevQuantity}
+          className="font-exo2"
+          style={{ fontSize: '1em', cursor: 'pointer' }}
         >
-          <span>&#8722; </span>
+          &#8722;
         </button>
       </CartLineUpdateButton>
-      &nbsp;
-      <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
+      <span className="font-exo2" style={{ fontSize: '1em', minWidth: '1.5em', textAlign: 'center' }}>{quantity}</span>
+      <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}> 
         <button
           aria-label="Increase quantity"
           name="increase-quantity"
           value={nextQuantity}
           disabled={!!isOptimistic}
+          className="font-exo2"
+          style={{ fontSize: '1em', cursor: 'pointer' }}
         >
-          <span>&#43;</span>
+          &#43;
         </button>
       </CartLineUpdateButton>
-      &nbsp;
       <CartLineRemoveButton lineIds={[lineId]} disabled={!!isOptimistic} />
     </div>
   );
@@ -117,9 +120,11 @@ function CartLineQuantity({line}: {line: CartLine}) {
 function CartLineRemoveButton({
   lineIds,
   disabled,
+  customLabel,
 }: {
   lineIds: string[];
   disabled: boolean;
+  customLabel?: string;
 }) {
   return (
     <CartForm
@@ -128,8 +133,8 @@ function CartLineRemoveButton({
       action={CartForm.ACTIONS.LinesRemove}
       inputs={{lineIds}}
     >
-      <button disabled={disabled} type="submit">
-        Remove
+      <button disabled={disabled} type="submit" className="font-exo2" style={{ fontSize: '0.9em', verticalAlign: 'middle', cursor: 'pointer' }}>
+        <small className="font-exo2" style={{ fontSize: '1em' }}>{customLabel || 'Remove'}</small>
       </button>
     </CartForm>
   );
