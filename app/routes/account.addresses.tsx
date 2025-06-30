@@ -256,7 +256,12 @@ export async function action({request, context}: ActionFunctionArgs) {
 export default function Addresses() {
   const {customer} = useOutletContext<{customer: CustomerFragment}>();
   const {defaultAddress, addresses} = customer;
-  const [showModal, setShowModal] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
+  // Handler to collapse form after successful address creation
+  function handleAddressSuccess() {
+    setShowForm(false);
+  }
 
   return (
     <div className="account-addresses">
@@ -277,54 +282,20 @@ export default function Addresses() {
               fontSize: '0.95rem',
               letterSpacing: '0.05em',
               cursor: 'pointer',
-              transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+              transition: 'background 0.2s, color 0.2s, borderColor 0.2s',
               marginTop: '1.5rem',
               textTransform: 'lowercase',
             }}
-            onClick={() => setShowModal(true)}
+            onClick={() => setShowForm((prev) => !prev)}
+            aria-expanded={showForm}
+            aria-controls="add-address-form"
           >
-            add address
+            {showForm ? 'cancel' : 'add address'}
           </button>
-          {showModal && (
-            <div className="modal-overlay" style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100vw',
-              height: '100vh',
-              background: 'rgba(0,0,0,0.3)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 1000,
-            }}>
-              <div className="modal-content" style={{
-                background: '#fff',
-                borderRadius: '8px',
-                padding: '2rem',
-                minWidth: '320px',
-                maxWidth: '90vw',
-                boxShadow: '0 2px 16px rgba(0,0,0,0.15)',
-                position: 'relative',
-              }}>
-                <button
-                  aria-label="Close"
-                  onClick={() => setShowModal(false)}
-                  style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    right: '1rem',
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '1.5rem',
-                    cursor: 'pointer',
-                  }}
-                >
-                  &times;
-                </button>
-                <h3 className="font-audiowide" style={{marginBottom: '1rem'}}>Add Address</h3>
-                <NewAddressForm onSuccess={() => setShowModal(false)} />
-              </div>
+          {showForm && (
+            <div id="add-address-form" style={{marginTop: '2rem', maxWidth: 480}}>
+              <h3 className="font-audiowide" style={{marginBottom: '1rem'}}>Add Address</h3>
+              <NewAddressForm onSuccess={handleAddressSuccess} />
             </div>
           )}
         </>
@@ -342,54 +313,20 @@ export default function Addresses() {
               fontSize: '0.95rem',
               letterSpacing: '0.05em',
               cursor: 'pointer',
-              transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+              transition: 'background 0.2s, color 0.2s, borderColor 0.2s',
               marginBottom: '1.5rem',
               textTransform: 'lowercase',
             }}
-            onClick={() => setShowModal(true)}
+            onClick={() => setShowForm((prev) => !prev)}
+            aria-expanded={showForm}
+            aria-controls="add-address-form"
           >
-            add address
+            {showForm ? 'cancel' : 'add address'}
           </button>
-          {showModal && (
-            <div className="modal-overlay" style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100vw',
-              height: '100vh',
-              background: 'rgba(0,0,0,0.3)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 1000,
-            }}>
-              <div className="modal-content" style={{
-                background: '#fff',
-                borderRadius: '8px',
-                padding: '2rem',
-                minWidth: '320px',
-                maxWidth: '90vw',
-                boxShadow: '0 2px 16px rgba(0,0,0,0.15)',
-                position: 'relative',
-              }}>
-                <button
-                  aria-label="Close"
-                  onClick={() => setShowModal(false)}
-                  style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    right: '1rem',
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '1.5rem',
-                    cursor: 'pointer',
-                  }}
-                >
-                  &times;
-                </button>
-                <h3 className="font-audiowide" style={{marginBottom: '1rem'}}>Add Address</h3>
-                <NewAddressForm onSuccess={() => setShowModal(false)} />
-              </div>
+          {showForm && (
+            <div id="add-address-form" style={{marginTop: '2rem', maxWidth: 480}}>
+              <h3 className="font-audiowide" style={{marginBottom: '1rem'}}>Add Address</h3>
+              <NewAddressForm onSuccess={handleAddressSuccess} />
             </div>
           )}
           <br />
