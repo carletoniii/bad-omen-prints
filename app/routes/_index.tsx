@@ -98,6 +98,11 @@ export default function Homepage() {
           Bad Omen Prints is a curated collection of original film photographs. The work is studio-based and conceptual, with a focus on color, mood, and form. Each image is shot on 35mm or medium format film and printed on demand using high-quality materials.
         </p>
       </div>
+      <img
+        src="/images/homepage-lifestyle-min.jpg"
+        alt="Studio still life with flowers"
+        style={{ display: 'block', width: '70vw', maxWidth: '1000px', margin: '0 auto 3rem auto', borderRadius: '1.25rem' }}
+      />
       <RecommendedProducts products={data.recommendedProducts} />
       <form
         action="https://badomenprints.us5.list-manage.com/subscribe/post?u=c00223fba3df379d40621326e&id=f333b71ec1"
