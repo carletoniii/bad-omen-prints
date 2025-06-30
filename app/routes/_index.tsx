@@ -101,8 +101,25 @@ export default function Homepage() {
       <img
         src="/images/homepage-lifestyle-min.jpg"
         alt="Kodak film strip with inverted tagline: analog. strange. real."
-        style={{ display: 'block', width: '70vw', maxWidth: '1000px', margin: '0 auto 3rem auto', borderRadius: '1.25rem' }}
+        style={{
+          display: 'block',
+          width: '70vw',
+          maxWidth: '1000px',
+          margin: '0 auto 3rem auto',
+          borderRadius: '1.25rem',
+        }}
+        className="homepage-lifestyle-img"
       />
+      <style>{`
+        @media (max-width: 600px) {
+          .homepage-lifestyle-img {
+            width: 90vw !important;
+            max-width: 100vw !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+        }
+      `}</style>
       <RecommendedProducts products={data.recommendedProducts} />
       <form
         action="https://badomenprints.us5.list-manage.com/subscribe/post?u=c00223fba3df379d40621326e&id=f333b71ec1"
