@@ -455,139 +455,182 @@ export function AddressForm({
   const error = action?.error?.[addressId];
   const isDefaultAddress = defaultAddress?.id === addressId;
   return (
-    <Form id={addressId}>
-      <fieldset>
+    <Form id={addressId} className="max-w-2xl mx-auto">
+      <fieldset className="border-none p-0">
         <input type="hidden" name="addressId" defaultValue={addressId} />
-        <label htmlFor="firstName">First name*</label>
-        <input
-          aria-label="First name"
-          autoComplete="given-name"
-          defaultValue={address?.firstName ?? ''}
-          id="firstName"
-          name="firstName"
-          placeholder="First name"
-          required
-          type="text"
-        />
-        <label htmlFor="lastName">Last name*</label>
-        <input
-          aria-label="Last name"
-          autoComplete="family-name"
-          defaultValue={address?.lastName ?? ''}
-          id="lastName"
-          name="lastName"
-          placeholder="Last name"
-          required
-          type="text"
-        />
-        <label htmlFor="company">Company</label>
-        <input
-          aria-label="Company"
-          autoComplete="organization"
-          defaultValue={address?.company ?? ''}
-          id="company"
-          name="company"
-          placeholder="Company"
-          type="text"
-        />
-        <label htmlFor="address1">Address line*</label>
-        <input
-          aria-label="Address line 1"
-          autoComplete="address-line1"
-          defaultValue={address?.address1 ?? ''}
-          id="address1"
-          name="address1"
-          placeholder="Address line 1*"
-          required
-          type="text"
-        />
-        <label htmlFor="address2">Address line 2</label>
-        <input
-          aria-label="Address line 2"
-          autoComplete="address-line2"
-          defaultValue={address?.address2 ?? ''}
-          id="address2"
-          name="address2"
-          placeholder="Address line 2"
-          type="text"
-        />
-        <label htmlFor="city">City*</label>
-        <input
-          aria-label="City"
-          autoComplete="address-level2"
-          defaultValue={address?.city ?? ''}
-          id="city"
-          name="city"
-          placeholder="City"
-          required
-          type="text"
-        />
-        <label htmlFor="zoneCode">State / Province*</label>
-        <input
-          aria-label="State/Province"
-          autoComplete="address-level1"
-          defaultValue={address?.zoneCode ?? ''}
-          id="zoneCode"
-          name="zoneCode"
-          placeholder="State / Province"
-          required
-          type="text"
-        />
-        <label htmlFor="zip">Zip / Postal Code*</label>
-        <input
-          aria-label="Zip"
-          autoComplete="postal-code"
-          defaultValue={address?.zip ?? ''}
-          id="zip"
-          name="zip"
-          placeholder="Zip / Postal Code"
-          required
-          type="text"
-        />
-        <label htmlFor="territoryCode">Country Code*</label>
-        <input
-          aria-label="territoryCode"
-          autoComplete="country"
-          defaultValue={address?.territoryCode ?? ''}
-          id="territoryCode"
-          name="territoryCode"
-          placeholder="Country"
-          required
-          type="text"
-          maxLength={2}
-        />
-        <label htmlFor="phoneNumber">Phone</label>
-        <input
-          aria-label="Phone Number"
-          autoComplete="tel"
-          defaultValue={address?.phoneNumber ?? ''}
-          id="phoneNumber"
-          name="phoneNumber"
-          placeholder="+16135551111"
-          pattern="^\+?[1-9]\d{3,14}$"
-          type="tel"
-        />
-        <div>
-          <input
-            defaultChecked={isDefaultAddress}
-            id="defaultAddress"
-            name="defaultAddress"
-            type="checkbox"
-          />
-          <label htmlFor="defaultAddress">Set as default address</label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Name fields */}
+          <div className="flex flex-col gap-2">
+            <label htmlFor="firstName" className="font-exo2 text-sm font-semibold">First name<span className="text-red-500">*</span></label>
+            <input
+              aria-label="First name"
+              autoComplete="given-name"
+              defaultValue={address?.firstName ?? ''}
+              id="firstName"
+              name="firstName"
+              placeholder="First name"
+              required
+              type="text"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="lastName" className="font-exo2 text-sm font-semibold">Last name<span className="text-red-500">*</span></label>
+            <input
+              aria-label="Last name"
+              autoComplete="family-name"
+              defaultValue={address?.lastName ?? ''}
+              id="lastName"
+              name="lastName"
+              placeholder="Last name"
+              required
+              type="text"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          {/* Company */}
+          <div className="flex flex-col gap-2 md:col-span-2">
+            <label htmlFor="company" className="font-exo2 text-sm font-semibold">Company</label>
+            <input
+              aria-label="Company"
+              autoComplete="organization"
+              defaultValue={address?.company ?? ''}
+              id="company"
+              name="company"
+              placeholder="Company"
+              type="text"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          {/* Address lines */}
+          <div className="flex flex-col gap-2 md:col-span-2">
+            <label htmlFor="address1" className="font-exo2 text-sm font-semibold">Address line 1<span className="text-red-500">*</span></label>
+            <input
+              aria-label="Address line 1"
+              autoComplete="address-line1"
+              defaultValue={address?.address1 ?? ''}
+              id="address1"
+              name="address1"
+              placeholder="Address line 1"
+              required
+              type="text"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          <div className="flex flex-col gap-2 md:col-span-2">
+            <label htmlFor="address2" className="font-exo2 text-sm font-semibold">Address line 2</label>
+            <input
+              aria-label="Address line 2"
+              autoComplete="address-line2"
+              defaultValue={address?.address2 ?? ''}
+              id="address2"
+              name="address2"
+              placeholder="Address line 2"
+              type="text"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          {/* City, State, Zip */}
+          <div className="flex flex-col gap-2">
+            <label htmlFor="city" className="font-exo2 text-sm font-semibold">City<span className="text-red-500">*</span></label>
+            <input
+              aria-label="City"
+              autoComplete="address-level2"
+              defaultValue={address?.city ?? ''}
+              id="city"
+              name="city"
+              placeholder="City"
+              required
+              type="text"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="zoneCode" className="font-exo2 text-sm font-semibold">State / Province<span className="text-red-500">*</span></label>
+            <input
+              aria-label="State/Province"
+              autoComplete="address-level1"
+              defaultValue={address?.zoneCode ?? ''}
+              id="zoneCode"
+              name="zoneCode"
+              placeholder="State / Province"
+              required
+              type="text"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="zip" className="font-exo2 text-sm font-semibold">Zip / Postal Code<span className="text-red-500">*</span></label>
+            <input
+              aria-label="Zip"
+              autoComplete="postal-code"
+              defaultValue={address?.zip ?? ''}
+              id="zip"
+              name="zip"
+              placeholder="Zip / Postal Code"
+              required
+              type="text"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          {/* Country, Phone */}
+          <div className="flex flex-col gap-2">
+            <label htmlFor="territoryCode" className="font-exo2 text-sm font-semibold">Country Code<span className="text-red-500">*</span></label>
+            <input
+              aria-label="territoryCode"
+              autoComplete="country"
+              defaultValue={address?.territoryCode ?? ''}
+              id="territoryCode"
+              name="territoryCode"
+              placeholder="Country"
+              required
+              type="text"
+              maxLength={2}
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="phoneNumber" className="font-exo2 text-sm font-semibold">Phone</label>
+            <input
+              aria-label="Phone Number"
+              autoComplete="tel"
+              defaultValue={address?.phoneNumber ?? ''}
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="+16135551111"
+              pattern="^\\+?[1-9]\\d{3,14}$"
+              type="tel"
+              className="border border-gray-400 rounded px-3 py-2 font-exo2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+          {/* Default address checkbox */}
+          <div className="flex items-center gap-2 md:col-span-2">
+            <input
+              defaultChecked={isDefaultAddress}
+              id="defaultAddress"
+              name="defaultAddress"
+              type="checkbox"
+              className="accent-black w-4 h-4"
+            />
+            <label htmlFor="defaultAddress" className="font-exo2 text-sm">Set as default address</label>
+          </div>
         </div>
+        {/* Error message */}
         {error ? (
-          <p>
+          <p className="mt-2 text-red-600 font-exo2 text-sm">
             <mark>
               <small>{error}</small>
             </mark>
           </p>
         ) : (
-          <br />
+          <div className="my-4" />
         )}
-        {children({
-          stateForMethod: (method) => (formMethod === method ? state : 'idle'),
-        })}
+        {/* Action buttons */}
+        <div className="flex justify-end gap-3 mt-6">
+          {children({
+            stateForMethod: (method) => (formMethod === method ? state : 'idle'),
+          })}
+        </div>
       </fieldset>
     </Form>
   );
