@@ -67,12 +67,22 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
     <div className="home">
-      <img
-        src="/images/site-banner-2-min.jpg"
-        alt="Bad Omen Prints hero banner"
-        className="hero-image"
-        style={{ width: '100%', objectFit: 'cover', display: 'block', marginBottom: '1rem' }}
-      />
+      <picture>
+        <source
+          srcSet="/images/Hero-Image-Mobile-min.jpg"
+          media="(max-width: 600px)"
+        />
+        <source
+          srcSet="/images/Hero-Image-Tablet-min.jpg"
+          media="(max-width: 1024px)"
+        />
+        <img
+          src="/images/site-banner-2-min.jpg"
+          alt="Bad Omen Prints hero banner"
+          className="hero-image"
+          style={{ width: '100%', objectFit: 'cover', display: 'block', marginBottom: '1rem' }}
+        />
+      </picture>
       <div
         className="homepage-description"
         style={{
