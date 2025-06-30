@@ -416,26 +416,7 @@ function ExistingAddresses({
           addressId={address.id}
           address={address}
           defaultAddress={defaultAddress}
-        >
-          {({stateForMethod}) => (
-            <div>
-              <button
-                disabled={stateForMethod('PUT') !== 'idle'}
-                formMethod="PUT"
-                type="submit"
-              >
-                {stateForMethod('PUT') !== 'idle' ? 'Saving' : 'Save'}
-              </button>
-              <button
-                disabled={stateForMethod('DELETE') !== 'idle'}
-                formMethod="DELETE"
-                type="submit"
-              >
-                {stateForMethod('DELETE') !== 'idle' ? 'Deleting' : 'Delete'}
-              </button>
-            </div>
-          )}
-        </AddressForm>
+        />
       ))}
     </div>
   );
@@ -450,7 +431,7 @@ export function AddressForm({
   addressId: AddressFragment['id'];
   address: CustomerAddressInput;
   defaultAddress: CustomerFragment['defaultAddress'];
-  children: (props: {
+  children?: (props: {
     stateForMethod: (method: 'PUT' | 'POST' | 'DELETE') => Fetcher['state'];
   }) => React.ReactNode;
 }) {
