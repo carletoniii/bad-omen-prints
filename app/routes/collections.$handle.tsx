@@ -71,8 +71,51 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
 export default function Collection() {
   const {collection} = useLoaderData<typeof loader>();
 
+  if (collection.handle === 'prints') {
+    return (
+      <div
+        className="collection"
+        style={{
+          paddingLeft: '2rem',
+          paddingRight: '2rem',
+          maxWidth: '1400px',
+          margin: '0 auto',
+        }}
+      >
+        <PaginatedResourceSection
+          connection={collection.products}
+          resourcesClassName="products-grid"
+        >
+          {({node: product, index}) => (
+            <ProductItem
+              key={product.id}
+              product={product}
+              loading={index < 8 ? 'eager' : undefined}
+            />
+          )}
+        </PaginatedResourceSection>
+        <Analytics.CollectionView
+          data={{
+            collection: {
+              id: collection.id,
+              handle: collection.handle,
+            },
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="collection">
+    <div
+      className="collection"
+      style={{
+        paddingLeft: '2rem',
+        paddingRight: '2rem',
+        maxWidth: '1400px',
+        margin: '0 auto',
+      }}
+    >
       <h1>{collection.title}</h1>
       <p className="collection-description">{collection.description}</p>
       <PaginatedResourceSection

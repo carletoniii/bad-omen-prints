@@ -33,6 +33,7 @@ export function ProductItem({
           data={image}
           loading={loading}
           sizes="(min-width: 45em) 400px, 100vw"
+          style={{ borderRadius: 0 }}
         />
       )}
       <h4>{product.title}</h4>
