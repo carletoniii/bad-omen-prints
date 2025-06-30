@@ -21,6 +21,7 @@ import {
   DELETE_ADDRESS_MUTATION,
   CREATE_ADDRESS_MUTATION,
 } from '~/graphql/customer-account/CustomerAddressMutations';
+import {useState} from 'react';
 
 export type ActionResponse = {
   addressId?: string | null;
@@ -255,19 +256,142 @@ export async function action({request, context}: ActionFunctionArgs) {
 export default function Addresses() {
   const {customer} = useOutletContext<{customer: CustomerFragment}>();
   const {defaultAddress, addresses} = customer;
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="account-addresses">
       <h2>Addresses</h2>
       <br />
       {!addresses.nodes.length ? (
-        <p>You have no addresses saved.</p>
+        <>
+          <p>You have no addresses saved.</p>
+          <button
+            className="add-address-btn font-audiowide"
+            style={{
+              background: '#111',
+              color: '#fff',
+              border: '2px solid transparent',
+              borderRadius: '4px',
+              padding: '0.5rem 1.25rem',
+              fontWeight: 'bold',
+              fontSize: '0.95rem',
+              letterSpacing: '0.05em',
+              cursor: 'pointer',
+              transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+              marginTop: '1.5rem',
+              textTransform: 'lowercase',
+            }}
+            onClick={() => setShowModal(true)}
+          >
+            add address
+          </button>
+          {showModal && (
+            <div className="modal-overlay" style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              background: 'rgba(0,0,0,0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 1000,
+            }}>
+              <div className="modal-content" style={{
+                background: '#fff',
+                borderRadius: '8px',
+                padding: '2rem',
+                minWidth: '320px',
+                maxWidth: '90vw',
+                boxShadow: '0 2px 16px rgba(0,0,0,0.15)',
+                position: 'relative',
+              }}>
+                <button
+                  aria-label="Close"
+                  onClick={() => setShowModal(false)}
+                  style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    right: '1rem',
+                    background: 'none',
+                    border: 'none',
+                    fontSize: '1.5rem',
+                    cursor: 'pointer',
+                  }}
+                >
+                  &times;
+                </button>
+                <h3 className="font-audiowide" style={{marginBottom: '1rem'}}>Add Address</h3>
+                <NewAddressForm onSuccess={() => setShowModal(false)} />
+              </div>
+            </div>
+          )}
+        </>
       ) : (
         <div>
-          <div>
-            <legend>Create address</legend>
-            <NewAddressForm />
-          </div>
+          <button
+            className="add-address-btn font-audiowide"
+            style={{
+              background: '#111',
+              color: '#fff',
+              border: '2px solid transparent',
+              borderRadius: '4px',
+              padding: '0.5rem 1.25rem',
+              fontWeight: 'bold',
+              fontSize: '0.95rem',
+              letterSpacing: '0.05em',
+              cursor: 'pointer',
+              transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+              marginBottom: '1.5rem',
+              textTransform: 'lowercase',
+            }}
+            onClick={() => setShowModal(true)}
+          >
+            add address
+          </button>
+          {showModal && (
+            <div className="modal-overlay" style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              background: 'rgba(0,0,0,0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 1000,
+            }}>
+              <div className="modal-content" style={{
+                background: '#fff',
+                borderRadius: '8px',
+                padding: '2rem',
+                minWidth: '320px',
+                maxWidth: '90vw',
+                boxShadow: '0 2px 16px rgba(0,0,0,0.15)',
+                position: 'relative',
+              }}>
+                <button
+                  aria-label="Close"
+                  onClick={() => setShowModal(false)}
+                  style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    right: '1rem',
+                    background: 'none',
+                    border: 'none',
+                    fontSize: '1.5rem',
+                    cursor: 'pointer',
+                  }}
+                >
+                  &times;
+                </button>
+                <h3 className="font-audiowide" style={{marginBottom: '1rem'}}>Add Address</h3>
+                <NewAddressForm onSuccess={() => setShowModal(false)} />
+              </div>
+            </div>
+          )}
           <br />
           <hr />
           <br />
@@ -281,7 +405,7 @@ export default function Addresses() {
   );
 }
 
-function NewAddressForm() {
+function NewAddressForm({onSuccess}: {onSuccess?: () => void} = {}) {
   const newAddress = {
     address1: '',
     address2: '',
@@ -296,6 +420,11 @@ function NewAddressForm() {
     zip: '',
   } as CustomerAddressInput;
 
+  const action = useActionData<ActionResponse>();
+  if (action?.createdAddress && onSuccess) {
+    onSuccess();
+  }
+
   return (
     <AddressForm
       addressId={'NEW_ADDRESS_ID'}
@@ -308,6 +437,22 @@ function NewAddressForm() {
             disabled={stateForMethod('POST') !== 'idle'}
             formMethod="POST"
             type="submit"
+            className="font-audiowide"
+            style={{
+              background: '#111',
+              color: '#fff',
+              border: '2px solid transparent',
+              borderRadius: '4px',
+              padding: '0.5rem 1.25rem',
+              fontWeight: 'bold',
+              fontSize: '0.95rem',
+              letterSpacing: '0.05em',
+              cursor: 'pointer',
+              transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+              marginTop: '1rem',
+              textTransform: 'lowercase',
+              width: '100%',
+            }}
           >
             {stateForMethod('POST') !== 'idle' ? 'Creating' : 'Create'}
           </button>
