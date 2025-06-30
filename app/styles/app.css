@@ -221,11 +221,25 @@ button.reset:hover:not(:has(> *)) {
 * --------------------------------------------------
 */
 .footer {
-  background: var(--color-dark);
+  background: #fff;
   margin-top: auto;
+  padding-bottom: 2.5rem;
+  padding-top: 2rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 2.5rem;
+  padding-left: 2rem;
 }
 
 .footer-menu {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
@@ -233,9 +247,28 @@ button.reset:hover:not(:has(> *)) {
   padding: 1rem;
 }
 
-.footer-menu a {
-  color: var(--color-light);
-  min-width: fit-content;
+.footer-menu a,
+.footer-menu .nav-link,
+.footer-menu a:visited,
+.footer a[aria-label='Instagram'] {
+  color: #888 !important;
+}
+
+.footer p,
+.footer .footer-privacy,
+.footer span {
+  font-weight: normal !important;
+  font-size: 0.85rem !important;
+  color: #888;
+}
+
+.footer a[aria-label='Instagram'] svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.footer-instagram {
+  margin-right: 0.5rem;
 }
 
 /*
@@ -254,6 +287,12 @@ button.reset:hover:not(:has(> *)) {
   max-height: calc(100vh - var(--cart-aside-summary-height-with-discount));
 }
 
+.cart-main.cart-empty,
+.cart-main.cart-empty .cart-lines-scrollable {
+  overflow: visible !important;
+  max-height: none !important;
+}
+
 .cart-line {
   display: flex;
   padding: 0.75rem 0;
@@ -263,11 +302,6 @@ button.reset:hover:not(:has(> *)) {
   height: 100%;
   display: block;
   margin-right: 0.75rem;
-}
-
-.cart-summary-page,
-.cart-summary-aside {
-  /* No bottom padding here; sticky button container handles safe area */
 }
 
 .cart-line-quantity {

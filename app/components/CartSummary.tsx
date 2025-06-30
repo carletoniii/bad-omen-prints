@@ -67,6 +67,8 @@ function CartCheckoutActions({checkoutUrl}: {checkoutUrl?: string}) {
           }}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
+          onMouseDown={() => setHover(false)}
+          onBlur={() => setHover(false)}
         >
           continue to checkout
         </button>
