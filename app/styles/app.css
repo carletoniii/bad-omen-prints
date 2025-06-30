@@ -224,7 +224,7 @@ button.reset:hover:not(:has(> *)) {
   background: #fff;
   margin-top: auto;
   padding-bottom: 2.5rem;
-  padding-top: 2rem;
+  padding-top: 1.2rem;
 }
 
 .footer-inner {
