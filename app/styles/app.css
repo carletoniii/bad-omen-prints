@@ -566,3 +566,16 @@ button.reset:hover:not(:has(> *)) {
     height: 44px;
   }
 }
+
+.checkout-sticky-container {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: #fff;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  padding-top: 0.5rem;
+  /* Optional: add a subtle shadow for separation */
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+}

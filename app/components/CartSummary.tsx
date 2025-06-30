@@ -26,7 +26,15 @@ export function CartSummary({cart, layout}: CartSummaryProps) {
           )}
         </span>
       </div>
-      <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
+      <div
+        className={
+          layout === 'page' || layout === 'aside'
+            ? 'checkout-sticky-container'
+            : undefined
+        }
+      >
+        <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
+      </div>
     </div>
   );
 }
