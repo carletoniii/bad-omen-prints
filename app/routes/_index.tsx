@@ -189,7 +189,7 @@ function RecommendedProducts({
   products: Promise<RecommendedProductsQuery | null>;
 }) {
   return (
-    <div className="recommended-products" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+    <div className="recommended-products" style={{ textAlign: 'center', marginBottom: '2rem', maxWidth: '80vw', marginLeft: 'auto', marginRight: 'auto' }}>
       <h2 className="font-audiowide lowercase">Featured Products</h2>
       <Suspense fallback={<div>Loading...</div>}>
         <Await resolve={products}>
