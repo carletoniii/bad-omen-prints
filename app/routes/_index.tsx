@@ -110,16 +110,6 @@ export default function Homepage() {
         }}
         className="homepage-lifestyle-img"
       />
-      <style>{`
-        @media (max-width: 600px) {
-          .homepage-lifestyle-img {
-            width: 90vw !important;
-            max-width: 100vw !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-          }
-        }
-      `}</style>
       <RecommendedProducts products={data.recommendedProducts} />
       <form
         action="https://badomenprints.us5.list-manage.com/subscribe/post?u=c00223fba3df379d40621326e&id=f333b71ec1"
@@ -191,25 +181,6 @@ export default function Homepage() {
             sign up
           </button>
         </div>
-        <style>{`
-          @media (max-width: 600px) {
-            form[action*='list-manage'] > div {
-              flex-direction: column;
-              box-shadow: none;
-              background: none;
-              gap: 0.5rem;
-            }
-            form[action*='list-manage'] input {
-              border-radius: 0.5rem;
-              width: 100%;
-            }
-            form[action*='list-manage'] button {
-              border-radius: 0.5rem;
-              width: 100%;
-              height: 44px;
-            }
-          }
-        `}</style>
       </form>
     </div>
   );
