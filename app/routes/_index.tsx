@@ -100,7 +100,7 @@ export default function Homepage() {
       </div>
       <img
         src="/images/homepage-lifestyle-min.jpg"
-        alt="Studio still life with flowers"
+        alt="Kodak film strip with inverted tagline: analog. strange. real."
         style={{ display: 'block', width: '70vw', maxWidth: '1000px', margin: '0 auto 3rem auto', borderRadius: '1.25rem' }}
       />
       <RecommendedProducts products={data.recommendedProducts} />
