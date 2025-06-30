@@ -1,5 +1,4 @@
 import type {ProductVariantFragment} from 'storefrontapi.generated';
-import {Image} from '@shopify/hydrogen';
 import {useState} from 'react';
 import {ImageZoomModal} from './ImageZoomModal';
 
@@ -11,9 +10,11 @@ export function ProductImage({
   mainImage?: ProductVariantFragment['image'];
 }) {
   const [zoomOpen, setZoomOpen] = useState(false);
+
   if (!image) {
     return <div className="product-image" />;
   }
+
   return (
     <div className="product-image">
       <button
@@ -24,17 +25,15 @@ export function ProductImage({
           padding: 0,
           margin: 0,
           cursor: 'pointer',
-          display: 'block',
+          width: '100%',
         }}
         onClick={() => setZoomOpen(true)}
         aria-label="Zoom product image"
       >
-        <Image
+        <img
+          src={image.url}
           alt={image.altText || 'Product Image'}
-          aspectRatio="1/1"
-          data={image}
-          key={image.id}
-          sizes="(min-width: 45em) 50vw, 100vw"
+          style={{ width: '100%' }}
         />
       </button>
       <ImageZoomModal

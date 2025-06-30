@@ -189,6 +189,7 @@ const PRODUCT_FRAGMENT = `#graphql
     descriptionHtml
     description
     featuredImage {
+      __typename
       id
       url
       altText
@@ -208,6 +209,7 @@ const PRODUCT_FRAGMENT = `#graphql
           color
           image {
             previewImage {
+              __typename
               url
             }
           }
