@@ -18,6 +18,17 @@ export default async function handleRequest(
     },
   });
 
+  // Add backend domain to connect-src in CSP
+  const backendUrl = 'https://bad-omen-prints-backend-production.up.railway.app';
+  let updatedHeader = header;
+  updatedHeader = updatedHeader.replace(
+    /connect-src ([^;]+);/,
+    (match, sources) => {
+      if (sources.includes(backendUrl)) return match;
+      return `connect-src ${sources} ${backendUrl};`;
+    }
+  );
+
   const body = await renderToReadableStream(
     <NonceProvider>
       <RemixServer context={remixContext} url={request.url} nonce={nonce} />
@@ -37,7 +48,7 @@ export default async function handleRequest(
   }
 
   responseHeaders.set('Content-Type', 'text/html');
-  responseHeaders.set('Content-Security-Policy', header);
+  responseHeaders.set('Content-Security-Policy', updatedHeader);
 
   return new Response(body, {
     headers: responseHeaders,
