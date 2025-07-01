@@ -165,6 +165,7 @@ export default function Homepage() {
             borderRadius: '0.5rem',
             overflow: 'hidden',
             background: '#fff',
+            height: '44px',
           }}
         >
           <input
@@ -180,11 +181,14 @@ export default function Homepage() {
             style={{
               flex: 1,
               border: 'none',
-              padding: '0.75rem 1rem',
+              height: '100%',
+              padding: '0 1rem',
               fontSize: '1rem',
+              lineHeight: 1.2,
               borderRadius: '0.5rem 0 0 0.5rem',
               outline: 'none',
               background: 'transparent',
+              boxSizing: 'border-box',
             }}
           />
           <button
@@ -199,6 +203,7 @@ export default function Homepage() {
               fontFamily: 'Audiowide, sans-serif',
               padding: '0 1.5rem',
               fontSize: '1rem',
+              lineHeight: 1.2,
               borderRadius: '0 0.5rem 0.5rem 0',
               cursor: loading ? 'not-allowed' : 'pointer',
               transition: 'background 0.2s, transform 0.1s',
@@ -206,6 +211,7 @@ export default function Homepage() {
               display: 'flex',
               alignItems: 'center',
               opacity: loading ? 0.7 : 1,
+              boxSizing: 'border-box',
             }}
             onMouseOver={e => { if (!loading) { e.currentTarget.style.background = '#222'; e.currentTarget.style.transform = 'scale(1.04)'; } }}
             onFocus={e => { if (!loading) { e.currentTarget.style.background = '#222'; e.currentTarget.style.transform = 'scale(1.04)'; } }}
