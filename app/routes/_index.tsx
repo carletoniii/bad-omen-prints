@@ -65,37 +65,6 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
 
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
-  // Email signup state
-  const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleEmailSignup(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setMessage(null);
-    setError(null);
-    try {
-      const res = await fetch('https://bad-omen-prints-backend-production.up.railway.app/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      const data = (await res.json()) as { error?: string };
-      if (res.ok) {
-        setMessage('Thanks for signing up!');
-        setEmail('');
-      } else {
-        setError(data.error || 'Something went wrong.');
-      }
-    } catch (err) {
-      setError('Network error. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  }
-
   return (
     <div className="home">
       <picture>
@@ -143,7 +112,9 @@ export default function Homepage() {
       />
       <RecommendedProducts products={data.recommendedProducts} />
       <form
-        onSubmit={handleEmailSignup}
+        action="https://badomenprints.us5.list-manage.com/subscribe/post?u=c00223fba3df379d40621326e&id=f333b71ec1"
+        method="POST"
+        target="_blank"
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -175,9 +146,6 @@ export default function Homepage() {
             required
             placeholder="your@email.com"
             className="font-exo2"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            disabled={loading}
             style={{
               flex: 1,
               border: 'none',
@@ -194,7 +162,6 @@ export default function Homepage() {
           <button
             type="submit"
             className="font-audiowide"
-            disabled={loading}
             style={{
               border: 'none',
               background: 'black',
@@ -205,24 +172,21 @@ export default function Homepage() {
               fontSize: '1rem',
               lineHeight: 1.2,
               borderRadius: '0 0.5rem 0.5rem 0',
-              cursor: loading ? 'not-allowed' : 'pointer',
+              cursor: 'pointer',
               transition: 'background 0.2s, transform 0.1s',
               height: '100%',
               display: 'flex',
               alignItems: 'center',
-              opacity: loading ? 0.7 : 1,
               boxSizing: 'border-box',
             }}
-            onMouseOver={e => { if (!loading) { e.currentTarget.style.background = '#222'; e.currentTarget.style.transform = 'scale(1.04)'; } }}
-            onFocus={e => { if (!loading) { e.currentTarget.style.background = '#222'; e.currentTarget.style.transform = 'scale(1.04)'; } }}
-            onMouseOut={e => { if (!loading) { e.currentTarget.style.background = 'black'; e.currentTarget.style.transform = 'scale(1)'; } }}
-            onBlur={e => { if (!loading) { e.currentTarget.style.background = 'black'; e.currentTarget.style.transform = 'scale(1)'; } }}
+            onMouseOver={e => { e.currentTarget.style.background = '#222'; e.currentTarget.style.transform = 'scale(1.04)'; }}
+            onFocus={e => { e.currentTarget.style.background = '#222'; e.currentTarget.style.transform = 'scale(1.04)'; }}
+            onMouseOut={e => { e.currentTarget.style.background = 'black'; e.currentTarget.style.transform = 'scale(1)'; }}
+            onBlur={e => { e.currentTarget.style.background = 'black'; e.currentTarget.style.transform = 'scale(1)'; }}
           >
-            {loading ? 'signing up...' : 'sign up'}
+            sign up
           </button>
         </div>
-        {message && <div style={{ color: 'green', marginTop: '0.5rem' }}>{message}</div>}
-        {error && <div style={{ color: 'red', marginTop: '0.5rem' }}>{error}</div>}
       </form>
     </div>
   );
