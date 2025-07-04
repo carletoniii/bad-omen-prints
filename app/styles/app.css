@@ -730,3 +730,24 @@ form[action*='list-manage'] button {
   padding: 0.5rem;
 }
 
+.account {
+  max-width: 900px;
+  margin: 1rem auto;
+  padding: 0.5rem;
+}
+
+.account h1 {
+  font-family: 'Audiowide', sans-serif;
+  text-transform: lowercase;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.account, .account * {
+  font-family: 'Exo 2', sans-serif;
+}
+
+.account h1 {
+  font-family: 'Audiowide', sans-serif;
+}
+
