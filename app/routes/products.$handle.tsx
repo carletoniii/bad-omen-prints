@@ -14,11 +14,21 @@ import {ProductForm} from '~/components/ProductForm';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
+  if (!data?.product) {
+    return [
+      { title: "Product Not Found | Bad Omen Prints" },
+      { name: "description", content: "Sorry, this product could not be found." }
+    ];
+  }
+  const description = data.product.description
+    ? data.product.description.slice(0, 160)
+    : "Shop unique film photography prints.";
   return [
-    {title: `Hydrogen | ${data?.product.title ?? ''}`},
+    { title: `${data.product.title} | Bad Omen Prints` },
+    { name: "description", content: description },
     {
       rel: 'canonical',
-      href: `/products/${data?.product.handle}`,
+      href: `/products/${data.product.handle}`,
     },
   ];
 };

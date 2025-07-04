@@ -3,7 +3,28 @@ import {useLoaderData, type MetaFunction} from '@remix-run/react';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{title: `Hydrogen | ${data?.page.title ?? ''}`}];
+  if (!data?.page) {
+    return [
+      { title: "Page Not Found | Bad Omen Prints" },
+      { name: "description", content: "Sorry, this page could not be found." }
+    ];
+  }
+  // Prefer SEO description, otherwise use the first 160 chars of the body (stripped of HTML)
+  let description = data.page.seo?.description;
+  if (!description) {
+    if (typeof document !== 'undefined') {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = data.page.body || '';
+      description = tmp.textContent?.slice(0, 160) || '';
+    } else {
+      // fallback for SSR: strip HTML tags with regex
+      description = (data.page.body || '').replace(/<[^>]+>/g, '').slice(0, 160);
+    }
+  }
+  return [
+    { title: `${data.page.title} | Bad Omen Prints` },
+    { name: "description", content: description || 'Read more from Bad Omen Prints.' },
+  ];
 };
 
 export async function loader(args: LoaderFunctionArgs) {

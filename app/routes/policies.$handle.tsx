@@ -8,7 +8,20 @@ type SelectedPolicies = keyof Pick<
 >;
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{title: `Hydrogen | ${data?.policy.title ?? ''}`}];
+  if (!data?.policy) {
+    return [
+      { title: "Policy Not Found | Bad Omen Prints" },
+      { name: "description", content: "Sorry, this policy could not be found." }
+    ];
+  }
+  // Strip HTML tags from the policy body for the description
+  const tmp = document.createElement('div');
+  tmp.innerHTML = data.policy.body || '';
+  const description = tmp.textContent?.slice(0, 160) || 'Read our store policies.';
+  return [
+    { title: `${data.policy.title} | Bad Omen Prints` },
+    { name: "description", content: description },
+  ];
 };
 
 export async function loader({params, context}: LoaderFunctionArgs) {
