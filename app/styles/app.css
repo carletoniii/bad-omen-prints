@@ -310,6 +310,10 @@ button.reset:hover:not(:has(> *)) {
   font-size: 0.8rem !important;
 }
 
+.footer a {
+  font-family: 'Exo 2', sans-serif !important;
+}
+
 /*
 * --------------------------------------------------
 * components/Cart
@@ -620,7 +624,7 @@ button.reset:hover:not(:has(> *)) {
 @font-face {
   font-family: 'Audiowide';
   src: url('/fonts/audiowide/audiowide-v21-latin-regular.woff2') format('woff2');
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -628,9 +632,25 @@ button.reset:hover:not(:has(> *)) {
 @font-face {
   font-family: 'Exo 2';
   src: url('/fonts/exo-2/exo-2-v25-latin-regular.woff2') format('woff2');
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+
+.page header h1 {
+  font-family: 'Audiowide', sans-serif !important;
+  text-transform: lowercase;
+}
+
+.page p {
+  font-family: 'Exo 2', sans-serif !important;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.page p:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 600px) {
@@ -702,5 +722,11 @@ form[action*='list-manage'] button {
   font-family: 'Audiowide', Arial, sans-serif;
   font-weight: bold;
   padding: 0 1.5rem;
+}
+
+.page {
+  max-width: 900px;
+  margin: 1rem auto;
+  padding: 0.5rem;
 }
 
