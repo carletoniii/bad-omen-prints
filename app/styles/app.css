@@ -675,6 +675,10 @@ button.reset:hover:not(:has(> *)) {
     width: auto;
     height: 100%;
   }
+  .product {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .checkout-sticky-container {
