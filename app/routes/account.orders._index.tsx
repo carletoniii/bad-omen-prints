@@ -66,9 +66,35 @@ function EmptyOrders() {
     <div>
       <p>You haven&apos;t placed any orders yet.</p>
       <br />
-      <p>
-        <Link to="/collections">Start Shopping →</Link>
-      </p>
+      <Link to="/collections" style={{ textDecoration: 'none' }}>
+        <button
+          className="font-audiowide lowercase"
+          style={{
+            background: '#111',
+            color: '#fff',
+            border: '2px solid transparent',
+            borderRadius: '4px',
+            padding: '0.5rem 1.25rem',
+            fontWeight: 'bold',
+            fontSize: '0.95rem',
+            letterSpacing: '0.05em',
+            cursor: 'pointer',
+            transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+            marginTop: '1rem',
+            marginBottom: '1rem',
+            textTransform: 'lowercase',
+            width: '100%',
+            maxWidth: '320px',
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}
+          onMouseEnter={e => (e.currentTarget.style.background = '#fff', e.currentTarget.style.color = '#111', e.currentTarget.style.border = '2px solid #111')}
+          onMouseLeave={e => (e.currentTarget.style.background = '#111', e.currentTarget.style.color = '#fff', e.currentTarget.style.border = '2px solid transparent')}
+        >
+          start shopping
+        </button>
+      </Link>
     </div>
   );
 }
