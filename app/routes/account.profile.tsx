@@ -127,7 +127,34 @@ export default function AccountProfile() {
         ) : (
           <br />
         )}
-        <button type="submit" disabled={state !== 'idle'}>
+        <button
+          type="submit"
+          disabled={state !== 'idle'}
+          className="font-audiowide lowercase"
+          style={{
+            background: state !== 'idle' ? '#eee' : '#111',
+            color: state !== 'idle' ? '#aaa' : '#fff',
+            border: state !== 'idle' ? '2px solid #eee' : '2px solid transparent',
+            borderRadius: '4px',
+            padding: '0.5rem 1.25rem',
+            fontWeight: 'bold',
+            fontSize: '0.95rem',
+            letterSpacing: '0.05em',
+            cursor: state !== 'idle' ? 'not-allowed' : 'pointer',
+            transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+            marginTop: '1rem',
+            marginBottom: '1rem',
+            textTransform: 'lowercase',
+            width: '100%',
+            maxWidth: '320px',
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            opacity: state !== 'idle' ? 0.7 : 1,
+          }}
+          onMouseEnter={e => { if(state === 'idle'){ e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#111'; e.currentTarget.style.border = '2px solid #111'; }}}
+          onMouseLeave={e => { if(state === 'idle'){ e.currentTarget.style.background = '#111'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.border = '2px solid transparent'; }}}
+        >
           {state !== 'idle' ? 'Updating' : 'Update'}
         </button>
       </Form>
