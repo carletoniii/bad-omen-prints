@@ -41,7 +41,32 @@ export function CartSummary({cart, layout}: CartSummaryProps) {
 
 function CartCheckoutActions({checkoutUrl}: {checkoutUrl?: string}) {
   const [hover, setHover] = useState(false);
-  if (!checkoutUrl) return null;
+  if (!checkoutUrl) {
+    return (
+      <button
+        className="font-audiowide lowercase"
+        style={{
+          background: '#eee',
+          color: '#aaa',
+          border: '2px solid #eee',
+          borderRadius: '4px',
+          padding: '0.5rem 1.25rem',
+          fontWeight: 'bold',
+          fontSize: '0.95rem',
+          letterSpacing: '0.05em',
+          cursor: 'not-allowed',
+          marginTop: '1rem',
+          marginBottom: '1rem',
+          textTransform: 'lowercase',
+          width: '100%',
+          opacity: 0.7,
+        }}
+        disabled
+      >
+        Loading checkout…
+      </button>
+    );
+  }
 
   return (
     <div>
