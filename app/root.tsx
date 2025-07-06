@@ -73,7 +73,7 @@ export function links() {
 
 export const meta: MetaFunction = () => [
   { property: 'og:title', content: 'Bad Omen Prints | Film Photography Prints' },
-  { property: 'og:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
+  { property: 'og:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal. Explore a curated collection of original 35mm and medium format images, printed on demand and shipped worldwide. Discover unique, high-quality art for your space.' },
   { property: 'og:image', content: 'https://badomenprints.com/images/SEO-image-2-min.jpg' },
   { property: 'og:type', content: 'article' },
   { name: 'author', content: 'Carleton Foster' },
@@ -82,7 +82,8 @@ export const meta: MetaFunction = () => [
   { name: 'twitter:card', content: 'summary_large_image' },
   { name: 'twitter:image', content: 'https://badomenprints.com/images/SEO-image-2-min.jpg' },
   { name: 'twitter:title', content: 'Bad Omen Prints | Film Photography Prints' },
-  { name: 'twitter:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
+  { name: 'twitter:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal. Explore a curated collection of original 35mm and medium format images, printed on demand and shipped worldwide. Discover unique, high-quality art for your space.' },
+  { name: 'description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal. Explore a curated collection of original 35mm and medium format images, printed on demand and shipped worldwide. Discover unique, high-quality art for your space.' },
 ];
 
 export async function loader(args: LoaderFunctionArgs) {
