@@ -10,6 +10,7 @@ import {
   Scripts,
   ScrollRestoration,
   useRouteLoaderData,
+  MetaFunction,
 } from '@remix-run/react';
 import favicon from '~/assets/favicon.svg';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
@@ -69,6 +70,20 @@ export function links() {
     { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicons/apple-touch-icon.png' },
   ];
 }
+
+export const meta: MetaFunction = () => [
+  { property: 'og:title', content: 'Bad Omen Prints | Film Photography Prints' },
+  { property: 'og:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
+  { property: 'og:image', content: 'https://badomenprints.com/images/SEO-image-2-min.jpg' },
+  { property: 'og:type', content: 'article' },
+  { name: 'author', content: 'Carleton Foster' },
+  { property: 'og:author', content: 'Carleton Foster' },
+  { property: 'article:published_time', content: '2025-07-06T09:00:00+00:00' },
+  { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:image', content: 'https://badomenprints.com/images/SEO-image-2-min.jpg' },
+  { name: 'twitter:title', content: 'Bad Omen Prints | Film Photography Prints' },
+  { name: 'twitter:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
+];
 
 export async function loader(args: LoaderFunctionArgs) {
   // Start fetching non-critical data without blocking time to first byte
