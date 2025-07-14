@@ -84,6 +84,8 @@ export const meta: MetaFunction = () => [
   { name: 'twitter:title', content: 'Bad Omen Prints | Film Photography Prints' },
   { name: 'twitter:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal. Explore a curated collection of original 35mm and medium format images, printed on demand and shipped worldwide. Discover unique, high-quality art for your space.' },
   { name: 'description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal. Explore a curated collection of original 35mm and medium format images, printed on demand and shipped worldwide. Discover unique, high-quality art for your space.' },
+  { property: 'article:author', content: 'Carleton Foster' },
+  { name: 'publish_date', content: '2025-07-06T09:00:00+00:00' },
 ];
 
 export async function loader(args: LoaderFunctionArgs) {

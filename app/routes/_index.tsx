@@ -16,6 +16,8 @@ export const meta: MetaFunction = () => {
     { property: 'og:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
     { property: 'og:image', content: 'https://cdn.shopify.com/s/files/1/0936/2728/5801/files/SEO-Image-min.jpg' },
     { name: 'twitter:card', content: 'summary_large_image' },
+    { property: 'article:author', content: 'Carleton Foster' },
+    { name: 'publish_date', content: '2025-07-06T09:00:00+00:00' },
   ];
 };
 
