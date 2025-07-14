@@ -110,14 +110,6 @@ To enable subscriptions:
 
 ---
 
-## 📚 Guides & Documentation
-
-- `guides/search/search.md` – Custom search implementation
-- `guides/predictiveSearch/predictiveSearch.md` – Predictive search feature
-- More guides can be added for onboarding or feature documentation.
-
----
-
 ## 📄 License
 
 This project is for demonstration and portfolio purposes.  
@@ -127,4 +119,4 @@ If you wish to use it commercially, please contact the author.
 
 ## 🙋‍♂️ Contact
 
-For questions, feedback, or collaboration, please open an issue or reach out via [your preferred contact method].
+For questions, feedback, or collaboration, please open an issue or reach out via carletonfosteriii@gmail.com.
