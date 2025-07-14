@@ -14,7 +14,7 @@ export const meta: MetaFunction = () => {
     { name: 'description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
     { property: 'og:title', content: 'Bad Omen Prints | Film Photography Prints' },
     { property: 'og:description', content: 'Conceptual studio photography prints created on film. Bold, analog, and surreal.' },
-    { property: 'og:image', content: 'https://badomenprints.com/images/SEO-image-2-min.jpg' },
+    { property: 'og:image', content: 'https://cdn.shopify.com/s/files/1/0936/2728/5801/files/SEO-Image-min.jpg' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ];
 };
